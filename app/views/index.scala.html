@@ -1,0 +1,14 @@
+@()
+
+@main("login") {
+    <script src="@routes.Assets.versioned("javascripts/login.js")"></script>
+    <div class="flex-container flex-column main unselectable">
+        <h1>welcome to chinesecheckers</h1>
+        <h3>please choose your nickname</h3>
+        <br>
+        <form class="flex-container" id="login">
+            <input id="nick" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" minlength="3" maxlength="16" required>
+            <input class="button sides-margin" id="submit" type="submit" value="login">
+        </form>
+    </div>
+}

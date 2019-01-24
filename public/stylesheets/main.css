@@ -1,0 +1,60 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: Consolas, monaco, monospace;
+    background-color: #111;
+    color: #fff;
+    text-shadow: 0 0 5px #0070ff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+input {
+    font-family: Consolas, monaco, monospace;
+    text-shadow: 0 0 5px #0070ff;
+    font-size: 20px;
+    padding: 5px;
+    color: #fff;
+    background-color: transparent;
+
+    box-shadow: 0 0 5px 0 #0070ff, inset 0 0 5px 0 #0070ff;
+    border: 1px #fff solid;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: 0;
+}
+
+::selection {
+    background-color: #fff;
+}
+
+.button:active {
+    box-shadow: 0 0 15px 0 #0070ff, inset 0 0 15px 0 #0070ff;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container.main {
+    height: 100%;
+}
+
+.flex-column {
+    flex-flow: column;
+}
+
+.sides-margin {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.unselectable {
+    user-select: none;
+}
