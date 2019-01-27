@@ -1,20 +1,17 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import play.mvc.*;
+import util.Validator;
 
 public class HomeController extends Controller {
-    public Result index() {
-        return ok(views.html.index.render());
+    Validator validator;
+
+    public HomeController(Validator validator) {
+        this.validator = validator;
     }
 
-    public Result login() {
-        JsonNode json = request().body().asJson();
-        if (json == null) {
-            return ok("{\"status\": false}");
-        }
-
-        return ok("XD");
+    public Result index() {
+        return ok(views.html.index.render());
     }
 
     public Result lobbies() {
