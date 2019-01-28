@@ -59,7 +59,7 @@ const newGame = () => {
                 nameField.disabled = false;
             }
         }
-    }
+    };
 
     xhr.send(JSON.stringify(data));
-}
+};

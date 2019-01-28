@@ -17,10 +17,10 @@ window.addEventListener('load', () => {
 
 const newGame = () => {
     window.location = '/new';
-}
+};
 
 const makeJoin = (id) => () => join(id);
 
 const join = (id) => {
     window.location = `/game/${id}`;
-}
+};

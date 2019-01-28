@@ -25,7 +25,7 @@ const login = () => {
 
             window.location = '/lobbies';
         }
-    }
+    };
 
     xhr.send(JSON.stringify(data));
-}
+};
