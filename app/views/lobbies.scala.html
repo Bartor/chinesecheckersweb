@@ -6,16 +6,16 @@
 @main("lobbies") {
     <script src="@routes.Assets.versioned("javascripts/lobbies.js")"></script>
     <div class="flex-container flex-column main unselectable">
-        <h2>chinesecheckers</h2>
-        <h4>logged in as @username</h4>
+        <h1>chinesecheckers</h1>
+        <h3>logged in as @username</h3>
         <div class="flex-container flex-column start grow-1">
         @for(game <- games) {
             <div class="flex-container">
                 <div class="flex-container flex-column">
-                    <h5>@game.getName</h5>
+                    <h4>@game.getName</h4>
                     <p>Players: @game.getPlayers.size() / @game.getLimit</p>
                 </div>
-                <input class="button" type="button" value="join">
+                <input class="button" type="button" value="join" onclick="join(@game.getId()">
             </div>
         }
         </div>

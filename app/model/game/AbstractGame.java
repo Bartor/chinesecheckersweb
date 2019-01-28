@@ -35,6 +35,11 @@ public abstract class AbstractGame {
     protected String name;
 
     /***
+     * ID of the game.
+     */
+    protected int id;
+
+    /***
      * Adds a new player to the game.
      * @param player Player being added.
      * @return Id of the new player or -1 if player's already in the game.
@@ -146,5 +151,9 @@ public abstract class AbstractGame {
      */
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 }

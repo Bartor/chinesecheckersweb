@@ -19,10 +19,11 @@ public class BasicGame extends AbstractGame {
      * @param playersLimit Playes in the game
      * @param name Name of the game
      */
-    public BasicGame(BoardMovementInterface boardMovementInterface, int playersLimit, String name) {
+    public BasicGame(BoardMovementInterface boardMovementInterface, int playersLimit, String name, int id) {
         this.boardMovementInterface = boardMovementInterface;
         this.limit = playersLimit;
         this.name = name;
+        this.id = id;
     }
 
     @Override

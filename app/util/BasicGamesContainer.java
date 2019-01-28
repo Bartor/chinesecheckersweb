@@ -32,7 +32,7 @@ public class BasicGamesContainer {
         }
 
         BasicBoardMovement movement = new BasicBoardMovement(board);
-        BasicGame game = new BasicGame(movement, limit, name);
+        BasicGame game = new BasicGame(movement, limit, name, gameId);
 
         games.put(gameId, game);
         return gameId;
