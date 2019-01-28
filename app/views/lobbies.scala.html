@@ -8,11 +8,13 @@
     <div class="flex-container flex-column main unselectable">
         <h2>chinesecheckers</h2>
         <h4>logged in as @username</h4>
-        <div class="flex-container grow-1">
+        <div class="flex-container flex-column start grow-1">
         @for(game <- games) {
-            <div>
-                <h5>@game.getName</h5>
-                <p>Players: @game.getPlayers.size() / @game.getLimit</p>
+            <div class="flex-container">
+                <div class="flex-container flex-column">
+                    <h5>@game.getName</h5>
+                    <p>Players: @game.getPlayers.size() / @game.getLimit</p>
+                </div>
                 <input class="button" type="button" value="join">
             </div>
         }
