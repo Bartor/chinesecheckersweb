@@ -23,7 +23,7 @@ const login = () => {
             document.cookie = `nickname=${data.nickname}`;
             document.cookie = `token=${xhr.responseText}`;
 
-            window.location.replace('/lobbies');
+            window.location = '/lobbies';
         }
     }
 

@@ -45,7 +45,7 @@ const newGame = () => {
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                window.location.replace(`/game/${xhr.responseText}`);
+                window.location = `/game/${xhr.responseText}`;
             } else if (xhr.status === 401) {
                 error.textContent = 'Your token is invalid, please login again';
                 button.value = 'create';
