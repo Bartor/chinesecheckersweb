@@ -20,7 +20,10 @@ const login = () => {
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
+            document.cookie = `nickname=${data.nickname}`;
+            document.cookie = `token=${xhr.responseText}`;
+
+            window.location.replace('/lobbies');
         }
     }
 

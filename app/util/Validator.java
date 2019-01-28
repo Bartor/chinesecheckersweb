@@ -1,22 +1,18 @@
 package util;
 
-import controllers.LoginController;
-import controllers.routes;
 import org.apache.commons.codec.digest.DigestUtils;
-import play.mvc.Http;
-import play.mvc.Result;
-import play.mvc.Security;
 
+import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Validator extends Security.Authenticator {
+@Singleton
+public class Validator {
     private Map<String, String> userTokens;
 
-    @Override
-    public Result onUnauthorized(Http.Context ctx) {
-        return redirect(routes.LoginController.login());
+    public Validator() {
+        this.userTokens = new HashMap<>();
     }
 
     public String addUser(String login) throws Exception {

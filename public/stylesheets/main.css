@@ -46,6 +46,14 @@ input:focus {
     height: 100%;
 }
 
+.grow-1 {
+    flex: 1 1;
+}
+
+.grow-0 {
+    flex: 0 1;
+}
+
 .flex-column {
     flex-flow: column;
 }

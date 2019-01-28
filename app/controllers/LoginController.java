@@ -1,11 +1,15 @@
 package controllers;
 
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 import util.Validator;
+
+import javax.inject.Inject;
 
 public class LoginController extends Controller {
     private Validator validator;
 
+    @Inject
     public LoginController(Validator validator) {
         this.validator = validator;
     }
@@ -24,8 +28,6 @@ public class LoginController extends Controller {
             return forbidden("This nickname is already taken");
         }
 
-        session(nickname, token);
-
-        return null;
+        return ok(token);
     }
 }
