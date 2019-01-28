@@ -18,11 +18,17 @@ public class Player {
     private int id = -1;
 
     /***
+     * Player token.
+     */
+    private String token;
+
+    /***
      * Creates a player with given name.
      * @param name Name to create with.
      */
-    public Player(String name) {
+    public Player(String name, String token) {
         this.name = name;
+        this.token = token;
     }
 
     /***
@@ -69,5 +75,13 @@ public class Player {
      */
     public Army getArmy() {
         return army;
+    }
+
+    /***
+     * Gets player's token.
+     * @return Token.
+     */
+    public String getToken() {
+        return token;
     }
 }

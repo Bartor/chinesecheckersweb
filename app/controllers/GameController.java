@@ -1,6 +1,9 @@
 package controllers;
 
+import model.exceptions.CannotAddPlayerException;
 import model.game.AbstractGame;
+import model.game.BasicGame;
+import model.player.Player;
 import play.mvc.Controller;
 import play.mvc.Result;
 import util.BasicGamesContainer;
@@ -19,10 +22,29 @@ public class GameController extends Controller {
     }
 
     public Result game(int id) {
-        if (validator.verify(request().cookie("nickname").value(), request().cookie("token").value())) {
+        String name = request().cookie("nickname").value();
+        String token = request().cookie("token").value();
+        if (validator.verify(name, token)) {
             AbstractGame game = container.getGame(id);
             if (game == null) return notFound("There is no such game");
-            return ok(); //todo replace
+
+            for (Player player : game.getPlayers()) {
+                if (player.getName().equals(name) && player.getToken().equals(token)) {
+                    return ok(views.html.game.render(player, game));
+                }
+            }
+
+            int playerId;
+            Player player = new Player(name, token);
+            try {
+                playerId = game.addPlayer(player);
+            } catch (CannotAddPlayerException e) {
+                return ok(views.html.lobbies.render(name, container.getGames()));
+            }
+            game.createArmy(player);
+            game.setTurn(1);
+
+            return ok(views.html.game.render(player, game));
         } else {
             return redirect("/");
         }

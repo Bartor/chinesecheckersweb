@@ -1,0 +1,26 @@
+@import model.game.BasicGame
+@import java.util
+@import model.game.AbstractGame
+@import model.player.Player
+@(thisPlayer: Player, game: AbstractGame)
+@positions = @{game.getBoardMovementInterface.getBoard.getPositions}
+@main("lobbies") {
+    <script src="@routes.Assets.versioned("javascripts/game.js")"></script>
+    <div id="data" data-player="@thisPlayer.getId" data-turn="@game.getTurn"></div>
+    <div class="flex-container flex-column main unselectable">
+        <h1>chinesecheckers</h1>
+        <h3>game: @game.getName</h3>
+        <br>
+        <div id="board">
+        @for(i <- 0 until positions.length) {
+            <div class="flex-container nopad vertical-margins">
+            @for(j <- 0 until positions(i).length) {
+                @if(positions(i)(j) > -1) {
+                    <div class="field color@positions(i)(j)" data-player="@positions(i)(j)" data-row="@i" data-column="@j"></div>
+                }
+            }
+            </div>
+        }
+        </div>
+    </div>
+}

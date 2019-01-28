@@ -30,6 +30,8 @@ input {
     box-shadow: 0 0 5px 0 #0070ff, inset 0 0 5px 0 #0070ff;
     border: 1px #fff solid;
     border-radius: 5px;
+
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
 input:focus {
@@ -101,6 +103,53 @@ input::-webkit-inner-spin-button {
 
 .unselectable {
     user-select: none;
+}
+
+.field {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.field:active {
+    transform: scale(0.95);
+}
+
+.field.selected {
+    background-color: #eee;
+    box-shadow: 0 0 15px 0 #eee, inset 0 0 15px 0 #eee;
+}
+
+.color0 {
+    background-color: #333;
+    box-shadow: 0 0 15px 0 #333, inset 0 0 15px 0 #333;
+}
+.color1 {
+    background-color: #0070FF;
+    box-shadow: 0 0 15px 0 #0070ff, inset 0 0 15px 0 #0070ff;
+}
+.color2 {
+    background-color: #EF004C;
+    box-shadow: 0 0 15px 0 #EF004C, inset 0 0 15px 0 #EF004C;
+}
+.color3 {
+    background-color: #454655;
+    box-shadow: 0 0 15px 0 #454655, inset 0 0 15px 0 #454655;
+}
+.color4 {
+    background-color: #00D9F3;
+    box-shadow: 0 0 15px 0 #00D9F3, inset 0 0 15px 0 #00D9F3;
+}
+.color5 {
+    background-color: #A9AABC;
+    box-shadow: 0 0 15px 0 #A9AABC, inset 0 0 15px 0 #A9AABC;
+}
+.color6 {
+    background-color: #AE0021;
+    box-shadow: 0 0 15px 0 #AE0021, inset 0 0 15px 0 #AE0021;
 }
 
 #error {

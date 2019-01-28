@@ -15,10 +15,9 @@
                     <h4>@game.getName</h4>
                     <p>Players: @game.getPlayers.size() / @game.getLimit</p>
                 </div>
-                <input class="button" type="button" value="join" id="j@game.getId"> @* chrome's something something content
-                                                                                    policy disallows used of inline js,
-                                                                                    so we have to add event listeners
-                                                                                    manually when loading the page *@
+                <div class="flex-container flex-column">
+                    <input class="button" type="button" value="join" id="j@game.getId">
+                </div>
             </div>
         }
         </div>
