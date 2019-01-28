@@ -6,10 +6,8 @@
 @main("lobbies") {
     <script src="@routes.Assets.versioned("javascripts/lobbies.js")"></script>
     <div class="flex-container flex-column main unselectable">
-        <br>
         <h2>chinesecheckers</h2>
         <h4>logged in as @username</h4>
-        <br>
         <div class="flex-container grow-1">
         @for(game <- games) {
             <div>
@@ -22,6 +20,5 @@
         <div class="grow-0">
             <input class="button" type="button" value="new game" onsubmit="newGame()">
         </div>
-        <br>
     </div>
 }
