@@ -15,12 +15,14 @@ import java.util.List;
 public class BasicGame extends AbstractGame {
     /***
      * Create it with basic movement and number of players.
-     * @param boardMovementInterface
-     * @param playersLimit
+     * @param boardMovementInterface Movement used by this game
+     * @param playersLimit Playes in the game
+     * @param name Name of the game
      */
-    public BasicGame(BoardMovementInterface boardMovementInterface, int playersLimit) {
+    public BasicGame(BoardMovementInterface boardMovementInterface, int playersLimit, String name) {
         this.boardMovementInterface = boardMovementInterface;
         this.limit = playersLimit;
+        this.name = name;
     }
 
     @Override

@@ -30,6 +30,11 @@ public abstract class AbstractGame {
     protected int limit;
 
     /***
+     * Name of the game.
+     */
+    protected String name;
+
+    /***
      * Adds a new player to the game.
      * @param player Player being added.
      * @return Id of the new player or -1 if player's already in the game.
@@ -135,4 +140,11 @@ public abstract class AbstractGame {
      */
     abstract public boolean hasWon(Player player);
 
+    /***
+     * Gets name.
+     * @return Name of the game.
+     */
+    public String getName() {
+        return name;
+    }
 }
