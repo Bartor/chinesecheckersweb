@@ -42,7 +42,7 @@ public class HomeController extends Controller {
 
     public Result newGame() {
         if (validator.verify(request().cookie("nickname").value(), request().cookie("token").value())) {
-            return ok(); //todo replace
+            return ok(views.html.newGame.render());
         } else {
             return redirect("/");
         }
