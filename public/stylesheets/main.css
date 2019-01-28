@@ -69,8 +69,12 @@ input::-webkit-inner-spin-button {
     flex: 0 1;
 }
 
-.stretch {
-    align-items: stretch;
+.fullwidth {
+    width: 100%;
+}
+
+.end {
+    align-items: flex-end;
 }
 
 .flex-column {
@@ -89,4 +93,8 @@ input::-webkit-inner-spin-button {
 
 .unselectable {
     user-select: none;
+}
+
+#error {
+    text-shadow: 0 0 5px #ff0000;
 }

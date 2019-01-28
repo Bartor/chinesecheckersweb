@@ -26,7 +26,7 @@ public class BasicGamesContainer {
 
         BasicBoard board = new BasicBoard();
         try {
-            board.loadBoard(new File(""));
+            board.loadBoard(new File("basicBoard.txt"));
         } catch (CorruptedFileException e) {
             throw new Exception("Error when loading the board file");
         }

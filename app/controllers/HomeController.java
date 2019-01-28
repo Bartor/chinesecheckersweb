@@ -30,16 +30,6 @@ public class HomeController extends Controller {
         }
     }
 
-    public Result game(int id) {
-        if (validator.verify(request().cookie("nickname").value(), request().cookie("token").value())) {
-            AbstractGame game = container.getGame(id);
-            if (game == null) return notFound("There is no such game");
-            return ok(); //todo replace
-        } else {
-            return redirect("/");
-        }
-    }
-
     public Result newGame() {
         if (validator.verify(request().cookie("nickname").value(), request().cookie("token").value())) {
             return ok(views.html.newGame.render());

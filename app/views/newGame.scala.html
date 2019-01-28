@@ -7,13 +7,14 @@
                 name:
             </label>
             <input type="text" id="name" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" minlength="3" maxlength="16" required>
-            <div class="flex-container stretch nopad vertical-margins">
-                <label for="limit">
-                    limit:
-                </label>
-                <input class="sides-margin" type="number" id="limit" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" min="2" max="6" value="2" required>
-                <input class="button grow-1" type="submit" value="create">
-            </div>
+            <br>
+            <label for="limit">
+                limit:
+            </label>
+            <input class="fullwidth" type="number" id="limit" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" min="2" max="6" value="2" required>
+            <br>
+            <input class="fullwidth vertical-margins button grow-1" id="button" type="submit" value="create">
         </form>
+        <p id="error"></p>
     </div>
 }
