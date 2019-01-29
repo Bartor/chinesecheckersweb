@@ -50,7 +50,7 @@ function move(column, row) {
         return;
     }
 
-    if (field.dataset.player === '0') {
+    if (field.dataset.player === '0' && qualifyMovement({row: selected.dataset.row, column: selected.dataset.column}, {row: row, column: column})) {
         field.classList.remove('color0');
         field.classList.add(`color${data.player}`);
         field.setAttribute('data-player', data.player);
@@ -61,5 +61,24 @@ function move(column, row) {
         selected.classList.add('color0');
 
         selected = null;
+    }
+}
+
+function qualifyMovement(start, end) { //start, end: {column:, row:}
+    if ((start.row === end.row && Math.abs(start.column - end.column) === 1) ||
+            (Math.abs(start.row - end.row) === 1 &&
+                (start.row % 2 === 1 ?
+                    (start.column === end.column || 1*start.column == 1*end.column - 1) :
+                    (start.column === end.column || 1*start.column == 1*end.column + 1)
+                )
+            )
+        ) {
+        return true;
+    } else {
+        if (start.row === end.row && Math.abs(start.column - end.column) === 2) {
+            if (document.querySelector(`[data-row="${start.row}"][data-column="${start.column - (start.column - end.column > 0 ? -1 : 1)}"]`)) {
+                return true;
+            }
+        }
     }
 }
