@@ -1,10 +1,25 @@
 window.addEventListener('load', (event) => {
     registerFields();
     data = document.getElementById('data').dataset;
+
+    document.getElementById('nextTurn').addEventListener('click', nextTurn);
 });
 
 let data;
 let selected = null;
+
+function nextTurn() {
+    //todo communicate with websockets
+
+    if (selected) {
+        selected.classList.remove('selected');
+        selected = null;
+    }
+
+    data.turn = 1*data.turn + 1 > 6 ? "1" : (1*data.turn + 1)+'';
+    document.getElementById('turn').textContent = `current turn: ${data.turn}`;
+    if (data.limit === '1') data.player = data.turn;
+}
 
 function registerFields() {
     for (let child of document.getElementById('board').children) {
@@ -40,8 +55,6 @@ function select(column, row) {
 
     selected = field;
     field.classList.add('selected');
-
-    console.log(`Moving ${column} ${row}`);
 }
 
 function move(column, row) {
@@ -64,21 +77,91 @@ function move(column, row) {
     }
 }
 
-function qualifyMovement(start, end) { //start, end: {column:, row:}
-    if ((start.row === end.row && Math.abs(start.column - end.column) === 1) ||
-            (Math.abs(start.row - end.row) === 1 &&
-                (start.row % 2 === 1 ?
-                    (start.column === end.column || 1*start.column == 1*end.column - 1) :
-                    (start.column === end.column || 1*start.column == 1*end.column + 1)
-                )
-            )
-        ) {
-        return true;
-    } else {
-        if (start.row === end.row && Math.abs(start.column - end.column) === 2) {
-            if (document.querySelector(`[data-row="${start.row}"][data-column="${start.column - (start.column - end.column > 0 ? -1 : 1)}"]`)) {
-                return true;
+function qualifyMovement(start, end) {
+    //movement in the same row
+    if (start.row === end.row) {
+        if (Math.abs(start.column - end.column) === 1) {
+            return true;
+        } else {
+            //jumping over in a row
+            if (Math.abs(start.column - end.column) === 2) {
+                let between = document.querySelector(`[data-row="${start.row}"][data-column="${start.column - (start.column - end.column > 0 ? 1 : -1)}"]`);
+                //jump only possible if the field isn't empty
+                return between.dataset.player !== '0';
+            } else {
+                return false;
             }
         }
+    //movement to the other row
+    } else if (Math.abs(start.row - end.row) === 1) {
+        //different behaviour for odd and even rows
+        if (start.row % 2 === 1) {
+            return start.column === end.column || 1*start.column == 1*end.column - 1;
+        } else {
+            return start.column === end.column || 1*start.column == 1*end.column + 1;
+        }
+    //jumping over someone vertically
+    } else if (Math.abs(start.row - end.row) === 2) {
+        //todo fix this and make this work somehow
+        return true;
+        /*
+        console.log(start, end);
+        if (start.row % 2 === 1) {
+            if (1*start.row < 1*end.row) {
+                //odd, down, lower column
+                if (start.column - 1 == end.column) {
+                    let between = document.querySelector(`[data-row="${1*start.row + 1}"][data-column="${end.column}"]`);
+                    console.log(`[data-row="${start.row + 1}"][data-column="${end.column}"]`);
+                    return between.dataset.player !== '0';
+                //odd, down, bigger column
+                } else if (1*start.column + 1 == end.column) {
+                    let between = document.querySelector(`[data-row="${1*start.row + 1}"][data-column="${start.column}"]`);
+                    console.log(`[data-row="${start.row + 1}"][data-column="${start.column}"]`);
+                    return between.dataset.player !== '0';
+                } else {
+                    return false;
+                }
+            } else {
+                //odd, up, lower column
+                if (start.column == end.column - 1) {
+                    let between = document.querySelector(`[data-row="${start.row - 1}"][data-column="${start.column}"]`);
+                    return between.dataset.player !== '0';
+                //odd, up, bigger column
+                } else if (start.column == 1*end.column + 1) {
+                    let between = document.querySelector(`[data-row="${start.row - 1}"][data-column="${end.column}"]`);
+                    return between.dataset.player !== '0';
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            if (1*start.row < 1*end.row) {
+                //even, down, lower column
+                if (start.column - 1 == end.column) {
+                    let between = document.querySelector(`[data-row="${1*start.row + 1}"][data-column="${end.column}"]`);
+                    return between.dataset.player !== '0';
+                //even, down, bigger column
+                } else if (1*start.column + 1 == 1*end.column) {
+                    let between = document.querySelector(`[data-row="${1*start.row + 1}"][data-column="${start.column}"]`);
+                    return between.dataset.player !== '0';
+                } else {
+                    return false;
+                }
+            } else {
+                //even, up, lower column
+                if (start.column == end.column - 1) {
+                    let between = document.querySelector(`[data-row="${start.row - 1}"][data-column="${end.column}"]`);
+                    return between.dataset.player !== '0';
+                //even, up, bigger column
+                } else if (start.column == 1*end.column + 1) {
+                    let between = document.querySelector(`[data-row="${start.row - 1}"][data-column="${start.column}"]`);
+                    return between.dataset.player !== '0';
+                } else {
+                    return false;
+                }
+            }
+        }*/
+    } else {
+        return false;
     }
 }

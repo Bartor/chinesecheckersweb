@@ -8,7 +8,7 @@
 
 @main("lobbies") {
     <script src="@routes.Assets.versioned("javascripts/game.js")"></script>
-    <div id="data" data-player="@thisPlayer.getId" data-turn="@game.getTurn"></div>
+    <div id="data" data-player="@thisPlayer.getId" data-turn="@game.getTurn" data-limit="@game.getLimit"></div>
     <div class="flex-container flex-column main unselectable">
         <h1>chinesecheckers</h1>
         <h3>game: @game.getName</h3>
@@ -24,5 +24,8 @@
             </div>
         }
         </div>
+        <br>
+        <h3 id="turn" class="vertical-margins">current turn: @game.getTurn</h3>
+        <input class="button" type="button" id="nextTurn" value="next turn">
     </div>
 }
